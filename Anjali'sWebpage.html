@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>For Anjali 🌙</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+      color: #fff;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      flex-direction: column;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+      color: #ffb6c1;
+    }
+
+    #compliment {
+      font-size: 1.2rem;
+      margin: 20px;
+      min-height: 60px;
+      padding: 0 20px;
+      color: #e0e0e0;
+      transition: opacity 0.3s ease;
+    }
+
+    button {
+      background-color: #ff69b4;
+      border: none;
+      color: white;
+      padding: 15px 25px;
+      font-size: 1rem;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.1s ease;
+    }
+
+    button:active {
+      transform: scale(0.97);
+      background-color: #ff85c1;
+    }
+
+    @media (max-width: 500px) {
+      h1 {
+        font-size: 1.5rem;
+      }
+      #compliment {
+        font-size: 1rem;
+      }
+      button {
+        font-size: 0.9rem;
+        padding: 12px 20px;
+      }
+    }
+
+    /* Stars layer */
+    .stars, .stars::after, .stars::before {
+      content: '';
+      position: absolute;
+      width: 2000px;
+      height: 2000px;
+      background: transparent url('https://raw.githubusercontent.com/PickledWasabi/starry-sky-bg/main/stars.png') repeat;
+      animation: starDrift 120s linear infinite;
+      top: -1000px;
+      left: -1000px;
+      z-index: 0;
+      opacity: 0.6;
+    }
+
+    @keyframes starDrift {
+      0% { transform: translate(0, 0); }
+      100% { transform: translate(100px, 100px); }
+    }
+
+    /* Shooting star */
+    .shooting-star {
+      position: absolute;
+      width: 2px;
+      height: 120px;
+      background: linear-gradient(white, transparent);
+      opacity: 0;
+      transform: rotate(45deg);
+      animation: shoot 6s ease-in-out infinite;
+      top: 15%;
+      left: 60%;
+      z-index: 1;
+    }
+
+    @keyframes shoot {
+      0% { opacity: 0; transform: translate(0, 0) rotate(45deg); }
+      5% { opacity: 1; }
+      100% { opacity: 0; transform: translateX(-1000px) translateY(1000px) rotate(45deg); }
+    }
+
+    /* Moon */
+    .moon {
+      position: absolute;
+      top: 40px;
+      right: 40px;
+      width: 90px;
+      height: 90px;
+      background: url('https://i.imgur.com/FH3b9ld.png') no-repeat center center / cover;
+      border-radius: 50%;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+      z-index: 2;
+      animation: moonPulse 4s ease-in-out infinite alternate;
+    }
+
+    @keyframes moonPulse {
+      0% { transform: scale(1); opacity: 0.9; }
+      100% { transform: scale(1.05); opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <h1>Hey Anjali 💖</h1>
+  <div id="compliment">Tap the button below, pretty girl.</div>
+  <button onclick="giveCompliment()">Gimme a Compliment ✨</button>
+  <button onclick="emergencyLove()" style="margin-top: 20px; background-color: #bb86fc;">
+    Emergency Button 💔
+  </button>
+
+  <div id="emergencyBox" style="
+    margin-top: 20px;
+    font-size: 1rem;
+    display: none;
+    max-width: 320px;
+    background-color: #1e1e1e;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(255, 105, 180, 0.3);
+    color: #ffd6ec;
+  "></div>
+
+  <div class="stars"></div>
+  <div class="shooting-star"></div>
+  <div class="moon"></div>
+
+  <script>
+    const compliments = [
+      "You're like the moon—soft, glowing, and impossible not to stare at.",
+      "The world is better with you in it.",
+      "You light up rooms without even trying.",
+      "You’re effortlessly cool and deeply kind.",
+      "Every time you smile, the universe sighs in relief.",
+      "You're more beautiful than a million sunsets.",
+      "You make existing feel less lonely.",
+      "You’re the kind of person songs are written about.",
+      "You’re the calm in chaos and the chaos in boring days.",
+      "You’re not just pretty—you’re poetry.",
+      "you’re so fucking pretty it actually makes my brain stutter",
+      "your existence alone improves my day like 1000%",
+      "how are you so soft and yet so goddamn powerful at the same time??",
+      "you’re the human equivalent of a warm hoodie and a playlist that understands me",
+      "you’re literally the main character in my head all the time",
+      "you’re not just pretty—you’re *annoyingly* pretty. like HOW?",
+      "looking at you is like opening a message that starts with 'hey just checking on you <3'",
+      "you breathe and suddenly my world feels a little more manageable",
+      "you got those eyes that look like they’ve seen galaxies and decided to stay kind anyway",
+      "your smile has its own gravity. i fall into it every time",
+      "you make being alive feel less like a burden and more like a privilege",
+      "you’re the chaos i want to choose every single time",
+      "you’re comfort and danger in the same heartbeat. i’m obsessed.",
+      "if being around you is a fever dream, never wake me up",
+      "you’re a little miracle with messy hair and a stubborn heart",
+      "you’re not just sunshine—you’re that warm-ass 4 p.m. glow that makes the world look softer",
+      "girl you got me blushing like a schoolboy in a coming-of-age anime",
+      "your laugh is an emotional reset button",
+      "your voice is like my favorite song playing low while everything else fades",
+      "i’ve seen stars and sunsets and thunderstorms and still nothing hits like you do",
+      "your soul’s got poetry leaking out the seams and you act like it’s normal",
+      "you’re the reason my phone battery keeps dying (and it’s worth it)",
+      "you could literally commit crimes and i’d probably cover for you ngl",
+      "your kindness is so rare i wanna put it in a museum",
+      "you’re both the plot twist and the comfort arc in my story",
+      "you’re a little apocalypse in eyeliner and i’d thank you for ending me",
+      "if i had a rupee for every time you made me smile like a dumbass i’d be able to buy you the moon by now",
+      "how are you real. like actually. i feel like i dreamed you and forgot to wake up",
+      "you make me want to write poetry and i don’t even *like* poetry",
+      "you’re the password to all the good things in my head",
+      "you make the word 'home' mean something again",
+      "you don’t just walk in rooms, you change the whole weather",
+      "you’re like a lyric i can’t get out of my head but i don’t want to either",
+      "you ruin my ability to focus and i say that lovingly",
+      "you’re so special i could tattoo your name on my heartbeat and it still wouldn’t be enough",
+      "every time i think i’ve said all the sweet things i can say to you, i find another hundred waiting",
+      "you’re so captivating it’s almost rude",
+      "you make love feel like something real. not just a word or idea—but *real*",
+      "i think if you looked at me long enough, time would stop just to give us more of that moment",
+      "you’re literally what the moon writes sad poems about",
+      "your existence feels like a plot twist my soul had been waiting for",
+      "you're the 'i made it through the day because of you' kinda person",
+      "you’re soft chaos. like, a thunderstorm that smells like vanilla",
+      "you’re what my dumb little heart chants about at 2 a.m.",
+      "i’d write whole novels in your name and still not capture how much i love you",
+      "your face should be illegal and yet here i am, grateful it’s not",
+      "the universe didn’t have to make you this good—but it did, and i’m not complaining",
+      "you are dangerously addictive and beautifully worth it",
+      "you got that 'i’d ruin my sleep schedule for you' energy",
+      "i hope you know you’re my favorite notification",
+      "you don’t have to try. you just exist and it’s enough to make me lose my mind",
+      "you’re like if someone distilled serotonin into a person",
+      "you’re my favorite 'what if' and my favorite 'thank god' at the same time",
+      "if i could bottle the feeling of being around you, i’d sell it as an antidepressant",
+      "you are ridiculous. ridiculously beautiful. ridiculously gentle. ridiculously important.",
+      "you look like comfort. and trouble. and peace. and chaos. and i want all of it",
+      "how does your laugh sound like safety and rebellion at the same time?",
+      "you are like a glitch in reality that turned out better than anything planned"
+    ];
+
+    function giveCompliment() {
+      const randomIndex = Math.floor(Math.random() * compliments.length);
+      const complimentBox = document.getElementById("compliment");
+      complimentBox.style.opacity = 0;
+      setTimeout(() => {
+        complimentBox.textContent = compliments[randomIndex];
+        complimentBox.style.opacity = 1;
+      }, 200);
+    }
+
+    const emergencyMessages = [
+      "Hey. I need you to breathe, okay? Just one breath. You're not alone. I'm right here.",
+      "Whatever's hurting, you don't have to carry it by yourself. I’m not going anywhere.",
+      "Close your eyes for a second. You’re safe. You’re loved. You’re allowed to fall apart and come back stronger.",
+      "You’re doing so well even when it feels like you’re failing. I’m proud of you for surviving this far.",
+      "Hey Anjali. You're not a burden. You're a miracle. You are loved more than you know.",
+      "I know it’s hard right now. But I’m here, and I’m not letting go.",
+      "Breathe. Just for me. Slow. Soft. Safe. I’ve got you.",
+      "The world can be loud. Let me be your quiet for a moment. I’m here."
+    ];
+
+    let emergencyIndex = 0;
+
+    function emergencyLove() {
+      const message = emergencyMessages[emergencyIndex];
+      const box = document.getElementById("emergencyBox");
+      box.style.display = "block";
+      box.innerText = message;
+      emergencyIndex = (emergencyIndex + 1) % emergencyMessages.length;
+    }
+  </script>
+</body>
+</html>
