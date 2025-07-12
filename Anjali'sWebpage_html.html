@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>For Anjali 🌙</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+      color: #fff;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      height: 100vh;
+    }
+
+    h1 {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+      color: #ffb6c1;
+    }
+
+    #compliment {
+      font-size: 1.2rem;
+      margin: 20px;
+      min-height: 60px;
+      padding: 0 20px;
+      color: #e0e0e0;
+      transition: opacity 0.3s ease;
+    }
+
+    button {
+      background-color: #ff69b4;
+      border: none;
+      color: white;
+      padding: 15px 25px;
+      font-size: 1rem;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.1s ease;
+      margin: 10px;
+      z-index: 10;
+    }
+
+    button:active {
+      transform: scale(0.97);
+      background-color: #ff85c1;
+    }
+
+    #emergencyBox {
+      margin-top: 20px;
+      font-size: 1rem;
+      display: none;
+      max-width: 320px;
+      background-color: #1e1e1e;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(255, 105, 180, 0.3);
+      color: #ffd6ec;
+      z-index: 10;
+    }
+
+    @media (max-width: 500px) {
+      h1 {
+        font-size: 1.5rem;
+      }
+      #compliment {
+        font-size: 1rem;
+      }
+      button {
+        font-size: 0.9rem;
+        padding: 12px 20px;
+      }
+    }
+
+    .stars, .stars::after, .stars::before {
+      content: '';
+      position: absolute;
+      width: 2000px;
+      height: 2000px;
+      background: transparent url('https://raw.githubusercontent.com/PickledWasabi/starry-sky-bg/main/stars.png') repeat;
+      animation: starDrift 120s linear infinite;
+      top: -1000px;
+      left: -1000px;
+      z-index: 0;
+      opacity: 0.6;
+    }
+
+    @keyframes starDrift {
+      0% { transform: translate(0, 0); }
+      100% { transform: translate(100px, 100px); }
+    }
+
+    .shooting-star {
+      position: absolute;
+      width: 2px;
+      height: 120px;
+      background: linear-gradient(white, transparent);
+      opacity: 0;
+      transform: rotate(45deg);
+      animation: shoot 6s ease-in-out infinite;
+      top: 15%;
+      left: 60%;
+      z-index: 1;
+    }
+
+    @keyframes shoot {
+      0% { opacity: 0; transform: translate(0, 0) rotate(45deg); }
+      5% { opacity: 1; }
+      100% { opacity: 0; transform: translateX(-1000px) translateY(1000px) rotate(45deg); }
+    }
+
+    .moon {
+      position: absolute;
+      top: 40px;
+      right: 40px;
+      width: 90px;
+      height: 90px;
+      background: url('https://i.imgur.com/FH3b9ld.png') no-repeat center center / cover;
+      border-radius: 50%;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+      z-index: 2;
+      animation: moonPulse 4s ease-in-out infinite alternate;
+    }
+
+    @keyframes moonPulse {
+      0% { transform: scale(1); opacity: 0.9; }
+      100% { transform: scale(1.05); opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <h1>Hey Anjali 💖</h1>
+  <div id="compliment">Tap the button below, pretty girl.</div>
+  <button id="complimentBtn">Gimme a Compliment ✨</button>
+  <button id="emergencyBtn" style="background-color: #bb86fc;">Emergency Button 💔</button>
+  <div id="emergencyBox"></div>
+
+  <div class="stars"></div>
+  <div class="shooting-star"></div>
+  <!-- <div class="moon"></div> -->
+
+  <script>
+    const compliments = [
+      "You're like the moon—soft, glowing, and impossible not to stare at.",
+      "You light up rooms without even trying.",
+      "You’re effortlessly cool and deeply kind.",
+      "Your smile has its own gravity. I fall into it every time.",
+      "You’re not just pretty—you’re poetry.",
+      "Your voice is like my favorite song playing low while everything else fades.",
+      "You make the word 'home' mean something again.",
+      "You’re the reason my phone battery keeps dying (and it’s worth it)."
+    ];
+
+    const emergencyMessages = [
+      "Hey. I need you to breathe, okay? Just one breath. You're not alone. I'm right here.",
+      "Whatever's hurting, you don't have to carry it by yourself. I’m not going anywhere.",
+      "You’re safe. You’re loved. You’re allowed to fall apart and come back stronger.",
+      "You’re doing so well even when it feels like you’re failing. I’m proud of you.",
+      "Hey Anjali. You're not a burden. You're a miracle. You are loved more than you know.",
+      "I know it’s hard right now. But I’m here, and I’m not letting go."
+    ];
+
+    let emergencyIndex = 0;
+
+    document.getElementById("complimentBtn").addEventListener("click", () => {
+      const compliment = compliments[Math.floor(Math.random() * compliments.length)];
+      const box = document.getElementById("compliment");
+      box.style.opacity = 0;
+      setTimeout(() => {
+        box.textContent = compliment;
+        box.style.opacity = 1;
+      }, 200);
+    });
+
+    document.getElementById("emergencyBtn").addEventListener("click", () => {
+      const message = emergencyMessages[emergencyIndex];
+      document.getElementById("emergencyBox").style.display = "block";
+      document.getElementById("emergencyBox").textContent = message;
+      emergencyIndex = (emergencyIndex + 1) % emergencyMessages.length;
+    });
+  </script>
+</body>
+</html>
