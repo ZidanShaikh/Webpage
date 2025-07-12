@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>For Anjali 🌙</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+      color: #fff;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      flex-direction: column;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+      color: #ffb6c1;
+      z-index: 10;
+    }
+
+    #compliment {
+      font-size: 1.2rem;
+      margin: 20px;
+      min-height: 60px;
+      padding: 0 20px;
+      color: #e0e0e0;
+      transition: opacity 0.3s ease;
+      z-index: 10;
+    }
+
+    button {
+      background-color: #ff69b4;
+      border: none;
+      color: white;
+      padding: 15px 25px;
+      font-size: 1rem;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.1s ease;
+      margin-top: 10px;
+      z-index: 10;
+    }
+
+    button:active {
+      transform: scale(0.97);
+      background-color: #ff85c1;
+    }
+
+    #emergencyBox {
+      margin-top: 20px;
+      font-size: 1rem;
+      display: none;
+      max-width: 320px;
+      background-color: #1e1e1e;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(255, 105, 180, 0.3);
+      color: #ffd6ec;
+      z-index: 10;
+    }
+
+    @media (max-width: 500px) {
+      h1 {
+        font-size: 1.5rem;
+      }
+      #compliment {
+        font-size: 1rem;
+      }
+      button {
+        font-size: 0.9rem;
+        padding: 12px 20px;
+      }
+    }
+
+    .stars, .stars::after, .stars::before {
+      content: '';
+      position: absolute;
+      width: 2000px;
+      height: 2000px;
+      background: transparent url('https://raw.githubusercontent.com/PickledWasabi/starry-sky-bg/main/stars.png') repeat;
+      animation: starDrift 120s linear infinite;
+      top: -1000px;
+      left: -1000px;
+      z-index: 0;
+      opacity: 0.6;
+    }
+
+    @keyframes starDrift {
+      0% { transform: translate(0, 0); }
+      100% { transform: translate(100px, 100px); }
+    }
+
+    .shooting-star {
+      position: absolute;
+      width: 2px;
+      height: 120px;
+      background: linear-gradient(white, transparent);
+      opacity: 0;
+      transform: rotate(45deg);
+      animation: shoot 6s ease-in-out infinite;
+      top: 15%;
+      left: 60%;
+      z-index: 1;
+    }
+
+    @keyframes shoot {
+      0% { opacity: 0; transform: translate(0, 0) rotate(45deg); }
+      5% { opacity: 1; }
+      100% { opacity: 0; transform: translateX(-1000px) translateY(1000px) rotate(45deg); }
+    }
+
+    .moon {
+      position: absolute;
+      top: 40px;
+      right: 40px;
+      width: 90px;
+      height: 90px;
+      background: url('https://i.imgur.com/FH3b9ld.png') no-repeat center center / cover;
+      border-radius: 50%;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+      z-index: 2;
+      animation: moonPulse 4s ease-in-out infinite alternate;
+    }
+
+    @keyframes moonPulse {
+      0% { transform: scale(1); opacity: 0.9; }
+      100% { transform: scale(1.05); opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <h1>Hey Anjali 💖</h1>
+  <div id="compliment">Tap the button below, pretty girl.</div>
+  <button id="complimentBtn">Gimme a Compliment ✨</button>
+  <button id="emergencyBtn" style="background-color: #bb86fc;">Emergency Button 💔</button>
+  <div id="emergencyBox"></div>
+
+  <div class="stars"></div>
+  <div class="shooting-star"></div>
+  <div class="moon"></div>
+
+  <script>
+    const compliments = [
+      "You're like the moon—soft, glowing, and impossible not to stare at.",
+      "The world is better with you in it.",
+      "You light up rooms without even trying.",
+      "You’re effortlessly cool and deeply kind.",
+      "Every time you smile, the universe sighs in relief.",
+      "You're more beautiful than a million sunsets.",
+      "You make existing feel less lonely.",
+      "You’re the kind of person songs are written about.",
+      "You’re the calm in chaos and the chaos in boring days.",
+      "You’re not just pretty—you’re poetry.",
+      "you’re so fucking pretty it actually makes my brain stutter",
+      "your existence alone improves my day like 1000%",
+      "how are you so soft and yet so goddamn powerful at the same time??",
+      "you’re the human equivalent of a warm hoodie and a playlist that understands me",
+      "you’re literally the main character in my head all the time",
+      "you’re not just pretty—you’re *annoyingly* pretty. like HOW?",
+      "looking at you is like opening a message that starts with 'hey just checking on you <3'",
+      "you breathe and suddenly my world feels a little more manageable",
+      "you got those eyes that look like they’ve seen galaxies and decided to stay kind anyway",
+      "your smile has its own gravity. i fall into it every time",
+      "you make being alive feel less like a burden and more like a privilege",
+      "you’re the chaos i want to choose every single time",
+      "you’re comfort and danger in the same heartbeat. i’m obsessed.",
+      "if being around you is a fever dream, never wake me up",
+      "you’re a little miracle with messy hair and a stubborn heart",
+      "you’re not just sunshine—you’re that warm-ass 4 p.m. glow that makes the world look softer"
+    ];
+
+    const emergencyMessages = [
+      "Hey. I need you to breathe, okay? Just one breath. You're not alone. I'm right here.",
+      "Whatever's hurting, you don't have to carry it by yourself. I’m not going anywhere.",
+      "Close your eyes for a second. You’re safe. You’re loved. You’re allowed to fall apart and come back stronger.",
+      "You’re doing so well even when it feels like you’re failing. I’m proud of you for surviving this far.",
+      "Hey Anjali. You're not a burden. You're a miracle. You are loved more than you know.",
+      "I know it’s hard right now. But I’m here, and I’m not letting go.",
+      "Breathe. Just for me. Slow. Soft. Safe. I’ve got you.",
+      "The world can be loud. Let me be your quiet for a moment. I’m here."
+    ];
+
+    let emergencyIndex = 0;
+
+    document.getElementById("complimentBtn").addEventListener("click", () => {
+      const randomIndex = Math.floor(Math.random() * compliments.length);
+      const complimentBox = document.getElementById("compliment");
+      complimentBox.style.opacity = 0;
+      setTimeout(() => {
+        complimentBox.textContent = compliments[randomIndex];
+        complimentBox.style.opacity = 1;
+      }, 200);
+    });
+
+    document.getElementById("emergencyBtn").addEventListener("click", () => {
+      const box = document.getElementById("emergencyBox");
+      box.textContent = emergencyMessages[emergencyIndex];
+      box.style.display = "block";
+      emergencyIndex = (emergencyIndex + 1) % emergencyMessages.length;
+    });
+  </script>
+</body>
+</html>
