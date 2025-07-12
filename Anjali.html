@@ -93,6 +93,16 @@
       z-index: 0;
       opacity: 0.6;
     }
+    .stars.layer2 {
+      animation: starDrift 200s linear infinite;
+      opacity: 0.3;
+      z-index: 0;
+    }
+    .stars.layer3 {
+      animation: starDrift 300s linear infinite;
+      opacity: 0.15;
+      z-index: 0;
+    }
 
     @keyframes starDrift {
       0% { transform: translate(0, 0); }
@@ -111,6 +121,18 @@
       left: 60%;
       z-index: 1;
     }
+    .shooting-star.star2 {
+      top: 40%;
+      left: 30%;
+      animation-delay: 2s;
+    }
+
+    .shooting-star.star3 {
+      top: 70%;
+      left: 80%;
+      animation-delay: 4s;
+    }
+
 
     @keyframes shoot {
       0% { opacity: 0; transform: translate(0, 0) rotate(45deg); }
@@ -145,8 +167,12 @@
   <div id="emergencyBox"></div>
 
   <div class="stars"></div>
+  <div class="stars layer2"></div>
+  <div class="stars layer3"></div>
   <div class="shooting-star"></div>
-  <!-- <div class="moon"></div> -->
+  <div class="shooting-star star2"></div>
+  <div class="shooting-star star3"></div>
+
 
   <script>
     const compliments = [
