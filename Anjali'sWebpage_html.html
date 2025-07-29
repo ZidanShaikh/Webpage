@@ -142,6 +142,11 @@
   <button id="emergencyBtn" style="background-color: #bb86fc;">Emergency Button 💔</button>
   <div id="emergencyBox"></div>
 
+  <div id="countdown" class="text-center text-lg font-semibold text-pink-500 mt-6">
+    🎉 Countdown to your birthday: <span id="timer">Loading...</span>
+  </div>
+
+  
   <div class="stars"></div>
   <div class="shooting-star"></div>
   <!-- <div class="moon"></div> -->
@@ -186,5 +191,31 @@
       emergencyIndex = (emergencyIndex + 1) % emergencyMessages.length;
     });
   </script>
+
+<script>
+  function updateCountdown() {
+    const now = new Date();
+    const birthday = new Date(now.getFullYear(), 7, 7); // August = month 7 (0-indexed)
+    
+    // If birthday already passed this year, count down to next year
+    if (now > birthday) {
+      birthday.setFullYear(birthday.getFullYear() + 1);
+    }
+
+    const diff = birthday - now;
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((diff / (1000 * 60)) % 60);
+    const seconds = Math.floor((diff / 1000) % 60);
+
+    document.getElementById("timer").textContent = 
+      `${days}d ${hours}h ${minutes}m ${seconds}s`;
+  }
+
+  setInterval(updateCountdown, 1000);
+  updateCountdown();
+</script>
+
+  
 </body>
 </html>
