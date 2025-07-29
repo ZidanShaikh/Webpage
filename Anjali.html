@@ -13,18 +13,17 @@
       color: #fff;
       font-family: 'Segoe UI', sans-serif;
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
-      height: 100vh;
-      flex-direction: column;
       text-align: center;
+      height: 100vh;
     }
 
     h1 {
       font-size: 1.8rem;
       margin-bottom: 1rem;
       color: #ffb6c1;
-      z-index: 10;
     }
 
     #compliment {
@@ -34,7 +33,6 @@
       padding: 0 20px;
       color: #e0e0e0;
       transition: opacity 0.3s ease;
-      z-index: 10;
     }
 
     button {
@@ -46,7 +44,7 @@
       border-radius: 25px;
       cursor: pointer;
       transition: background-color 0.3s ease, transform 0.1s ease;
-      margin-top: 10px;
+      margin: 10px;
       z-index: 10;
     }
 
@@ -93,16 +91,6 @@
       z-index: 0;
       opacity: 0.6;
     }
-    .stars.layer2 {
-      animation: starDrift 200s linear infinite;
-      opacity: 0.3;
-      z-index: 0;
-    }
-    .stars.layer3 {
-      animation: starDrift 300s linear infinite;
-      opacity: 0.15;
-      z-index: 0;
-    }
 
     @keyframes starDrift {
       0% { transform: translate(0, 0); }
@@ -121,18 +109,6 @@
       left: 60%;
       z-index: 1;
     }
-    .shooting-star.star2 {
-      top: 40%;
-      left: 30%;
-      animation-delay: 2s;
-    }
-
-    .shooting-star.star3 {
-      top: 70%;
-      left: 80%;
-      animation-delay: 4s;
-    }
-
 
     @keyframes shoot {
       0% { opacity: 0; transform: translate(0, 0) rotate(45deg); }
@@ -140,7 +116,7 @@
       100% { opacity: 0; transform: translateX(-1000px) translateY(1000px) rotate(45deg); }
     }
 
-    /* .moon {
+    .moon {
       position: absolute;
       top: 40px;
       right: 40px;
@@ -151,13 +127,8 @@
       box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
       z-index: 2;
       animation: moonPulse 4s ease-in-out infinite alternate;
-    } */
-<div id="countdown" class="text-center text-lg font-semibold text-pink-500 mt-6">
-    🎉 Countdown to your birthday: <span id="timer">Loading...</span>
-</div>
+    }
 
-
-    
     @keyframes moonPulse {
       0% { transform: scale(1); opacity: 0.9; }
       100% { transform: scale(1.05); opacity: 1; }
@@ -171,71 +142,52 @@
   <button id="emergencyBtn" style="background-color: #bb86fc;">Emergency Button 💔</button>
   <div id="emergencyBox"></div>
 
-  <div class="stars"></div>
-  <div class="stars layer2"></div>
-  <div class="stars layer3"></div>
-  <div class="shooting-star"></div>
-  <div class="shooting-star star2"></div>
-  <div class="shooting-star star3"></div>
+  <div id="countdown" class="text-center text-lg font-semibold text-pink-500 mt-6">
+    🎉 Countdown to your birthday: <span id="timer">Loading...</span>
+  </div>
 
+  
+  <div class="stars"></div>
+  <div class="shooting-star"></div>
+  <!-- <div class="moon"></div> -->
 
   <script>
     const compliments = [
       "You're like the moon—soft, glowing, and impossible not to stare at.",
-      "The world is better with you in it.",
       "You light up rooms without even trying.",
       "You’re effortlessly cool and deeply kind.",
-      "Every time you smile, the universe sighs in relief.",
-      "You're more beautiful than a million sunsets.",
-      "You make existing feel less lonely.",
-      "You’re the kind of person songs are written about.",
-      "You’re the calm in chaos and the chaos in boring days.",
+      "Your smile has its own gravity. I fall into it every time.",
       "You’re not just pretty—you’re poetry.",
-      "you’re so fucking pretty it actually makes my brain stutter",
-      "your existence alone improves my day like 1000%",
-      "how are you so soft and yet so goddamn powerful at the same time??",
-      "you’re the human equivalent of a warm hoodie and a playlist that understands me",
-      "you’re literally the main character in my head all the time",
-      "you’re not just pretty—you’re *annoyingly* pretty. like HOW?",
-      "looking at you is like opening a message that starts with 'hey just checking on you <3'",
-      "you breathe and suddenly my world feels a little more manageable",
-      "you got those eyes that look like they’ve seen galaxies and decided to stay kind anyway",
-      "your smile has its own gravity. i fall into it every time",
-      "you make being alive feel less like a burden and more like a privilege",
-      "you’re the chaos i want to choose every single time",
-      "you’re comfort and danger in the same heartbeat. i’m obsessed.",
-      "if being around you is a fever dream, never wake me up",
-      "you’re a little miracle with messy hair and a stubborn heart",
-      "you’re not just sunshine—you’re that warm-ass 4 p.m. glow that makes the world look softer"
+      "Your voice is like my favorite song playing low while everything else fades.",
+      "You make the word 'home' mean something again.",
+      "You’re the reason my phone battery keeps dying (and it’s worth it)."
     ];
 
     const emergencyMessages = [
       "Hey. I need you to breathe, okay? Just one breath. You're not alone. I'm right here.",
       "Whatever's hurting, you don't have to carry it by yourself. I’m not going anywhere.",
-      "Close your eyes for a second. You’re safe. You’re loved. You’re allowed to fall apart and come back stronger.",
-      "You’re doing so well even when it feels like you’re failing. I’m proud of you for surviving this far.",
+      "You’re safe. You’re loved. You’re allowed to fall apart and come back stronger.",
+      "You’re doing so well even when it feels like you’re failing. I’m proud of you.",
       "Hey Anjali. You're not a burden. You're a miracle. You are loved more than you know.",
-      "I know it’s hard right now. But I’m here, and I’m not letting go.",
-      "Breathe. Just for me. Slow. Soft. Safe. I’ve got you.",
-      "The world can be loud. Let me be your quiet for a moment. I’m here."
+      "I know it’s hard right now. But I’m here, and I’m not letting go."
     ];
 
     let emergencyIndex = 0;
 
     document.getElementById("complimentBtn").addEventListener("click", () => {
-      const randomIndex = Math.floor(Math.random() * compliments.length);
-      const complimentBox = document.getElementById("compliment");
-      complimentBox.style.opacity = 0;
+      const compliment = compliments[Math.floor(Math.random() * compliments.length)];
+      const box = document.getElementById("compliment");
+      box.style.opacity = 0;
       setTimeout(() => {
-        complimentBox.textContent = compliments[randomIndex];
-        complimentBox.style.opacity = 1;
+        box.textContent = compliment;
+        box.style.opacity = 1;
       }, 200);
     });
 
     document.getElementById("emergencyBtn").addEventListener("click", () => {
-      const box = document.getElementById("emergencyBox");
-      box.textContent = emergencyMessages[emergencyIndex];
-      box.style.display = "block";
+      const message = emergencyMessages[emergencyIndex];
+      document.getElementById("emergencyBox").style.display = "block";
+      document.getElementById("emergencyBox").textContent = message;
       emergencyIndex = (emergencyIndex + 1) % emergencyMessages.length;
     });
   </script>
